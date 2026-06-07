@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Federated Learning for 6G Networks: Navigating Privacy Benefits and Challenges</title>
+
+  <!-- Favicons -->
+  <link href="/static/img/favicon.png" rel="icon" />
+  <link href="/static/img/apple-touch-icon.png" rel="apple-touch-icon" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Open+Sans:wght@300;400;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Vendor CSS -->
+  <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="/static/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+  <link href="/static/vendor/aos/aos.css" rel="stylesheet" />
+  <link href="/static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" />
+  <link href="/static/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
+  <link href="/static/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+
+  <!-- Main CSS -->
+  <link href="/static/css/main.css" rel="stylesheet" />
+
+  <!-- Inline Styles -->
+  <style>
+    body {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      color: #fff;
+      font-family: "Poppins", sans-serif;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    #header {
+      background: rgba(26, 26, 46, 0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      padding: 15px 0;
+      transition: all 0.3s ease;
+    }
+
+    .logo img {
+      max-height: 40px;
+      margin-right: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    .logo img:hover {
+      transform: rotate(360deg);
+    }
+
+    .sitename {
+      color: #fff;
+      font-size: 24px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .sitename span {
+      color: #00b4d8;
+      font-size: 30px;
+    }
+
+    .scroll-top {
+      background: linear-gradient(45deg, #007bff, #00b4d8);
+      box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+
+    .scroll-top:hover {
+      transform: translateY(-5px);
+    }
+
+    #preloader {
+      background: #1a1a2e url("/static/img/loader.gif") no-repeat center center;
+      background-size: 100px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 9999;
+    }
+  </style>
+</head>
+
+<body class="index-page">
+  <!-- Decorative blobs -->
+  <div style="position:absolute;top:-50px;left:-50px;width:200px;height:200px;background:rgba(0,123,255,.2);border-radius:50%;filter:blur(50px);z-index:0;"></div>
+  <div style="position:absolute;bottom:-50px;right:-50px;width:300px;height:300px;background:rgba(0,180,216,.2);border-radius:50%;filter:blur(50px);z-index:0;"></div>
+
+  <!-- =============== HEADER =============== -->
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+      <a href="#" class="logo d-flex align-items-center">
+        <img src="/static/img/icon.png" alt="icon" />
+        <h1 class="sitename">Federated Learning in 6G: Managing Privacy and Issues</h1><span>.</span>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul style="display: flex; align-items: center; gap: 10px;">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <li><a href="{{url_for('home')}}" style="color: #fff; text-decoration: none; padding: 12px 20px; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;"><i class="fas fa-home" style="font-size: 18px;"></i>Home</a></li>
+  <li><a href="{{url_for('upload')}}" style="color: #fff; text-decoration: none; padding: 12px 20px; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;"><i class="fas fa-info-circle" style="font-size: 18px;"></i>Upload</a></li>
+   <li><a href="{{url_for('model')}}" style="color: #fff; text-decoration: none; padding: 12px 20px; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;"><i class="fas fa-info-circle" style="font-size: 18px;"></i>Model</a></li>
+  <li><a href="{{url_for('prediction')}}" class="active" style="color: #fff; text-decoration: none; padding: 12px 20px; background: linear-gradient(45deg, #007bff, #00b4d8); border-radius: 25px; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 15px rgba(0,123,255,0.4);"><i class="fas fa-magic" style="font-size: 18px;"></i>Prediction</a></li>
+  <li><a href="{{url_for('index')}}" style="color: #fff; text-decoration: none; padding: 12px 20px; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;"><i class="fas fa-sign-out-alt" style="font-size: 18px;"></i>LogOut</a></li>
+</ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list" style="color:#00b4d8;font-size:28px;cursor:pointer;"></i>
+      </nav>
+    </div>
+  </header>
+
+  <!-- =============== MAIN =============== -->
+  <main class="main" style="position:relative;z-index:1;">
+    <!-- Hero (visual background only) -->
+    <section id="hero" class="hero section" style="min-height:60vh;position:relative;overflow:hidden;">
+      <!-- Hero Carousel Images -->
+      <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000"
+        style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;">
+        <div class="carousel-item">
+          <img src="https://media.istockphoto.com/id/2190780332/photo/6g-word-with-wooden-blocks-on-table.jpg?s=612x612&w=0&k=20&c=56HgAG5LkZBi4abPpiVDO-mT4xKrnZy2zFt-VH1TYR8="
+            alt="" style="width:100%;height:100%;object-fit:cover;opacity:0.6;filter:blur(1px);" />
+        </div>
+        <div class="carousel-item active">
+          <img src="https://media.istockphoto.com/id/2177146786/photo/6g-6-generation-mobile-network-data-technology-global-communication-speed.jpg?s=612x612&w=0&k=20&c=Oyyjd4ywocBu4yVA38tLGcQdO1UJ8LSTgCgRLXw2kK4="
+            alt="" style="width:100%;height:100%;object-fit:cover;opacity:0.7;filter:blur(1px);" />
+        </div>
+        <div class="carousel-indicators" style="bottom:20px;">
+          <button type="button" data-bs-target="#hero-carousel" data-bs-slide-to="0"
+            style="width:12px;height:12px;border-radius:50%;background:#007bff;border:none;margin:0 5px;"></button>
+          <button type="button" data-bs-target="#hero-carousel" data-bs-slide-to="1" class="active"
+            style="width:12px;height:12px;border-radius:50%;background:#00b4d8;border:none;margin:0 5px;"></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- Upload & Results Panel ---------- -->
+    <section id="upload-panel" class="pt-5 px-3">
+      <div class="container">
+        <section class="max-w-3xl mx-auto bg-white bg-opacity-90 p-6 rounded-lg shadow-md text-gray-900">
+          <form action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data" class="space-y-4 text-center">
+            {% if msg %}
+            <h3 class="text-green-600 fw-semibold">{{ msg }}</h3>
+            {% endif %}
+            <div class="mb-3">
+              <label for="file-upload" class="form-label text-gray-800 fw-medium">Upload Dataset</label>
+              <input type="file" name="file" id="file-upload" class="form-control" required />
+            </div>
+            <button type="submit" class="btn btn-success px-4 py-2 fw-semibold" style="border-radius:25px;">Upload</button>
+          </form>
+        </section>
+
+        {% if rows %}
+        <section class="max-w-full overflow-auto mt-5">
+          <div class="bg-white bg-opacity-90 shadow-lg rounded-lg p-4 text-gray-900">
+            <table class="table table-sm align-middle mb-0">
+              <thead class="bg-gray-200">
+                <tr>
+                  {% for c in columns %}
+                  <th class="fw-bold px-3 py-2">{{ c }}</th>
+                  {% endfor %}
+                </tr>
+              </thead>
+              <tbody>
+                {% for r in rows %}
+                <tr class="border-bottom">
+                  {% for j in r %}
+                  <td class="px-3 py-2">{{ j }}</td>
+                  {% endfor %}
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </section>
+        {% endif %}
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== Scroll‑to‑Top ===================== -->
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center position-fixed" style="bottom:20px;right:20px;">
+    <i class="bi bi-arrow-up-circle text-white fs-4"></i>
+  </a>
+
+  <!-- Vendor JS -->
+  <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/static/vendor/aos/aos.js"></script>
+  <script src="/static/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="/static

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Federated Learning for 6G Networks: Navigating Privacy Benefits and Challenges</title>
+
+  <!-- Favicons -->
+  <link href="/static/img/favicon.png" rel="icon" />
+  <link href="/static/img/apple-touch-icon.png" rel="apple-touch-icon" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Vendor CSS -->
+  <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="/static/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+  <link href="/static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" />
+
+  <!-- Main CSS -->
+  <link href="/static/css/main.css" rel="stylesheet" />
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      overflow-x: hidden;
+    }
+
+    #header {
+      background: rgba(26, 26, 46, .95);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, .2);
+      padding: 15px 0;
+      transition: .3s
+    }
+
+    .logo img {
+      max-height: 40px;
+      margin-right: 10px;
+      transition: transform .3s
+    }
+
+    .logo img:hover {
+      transform: rotate(360deg)
+    }
+
+    .sitename {
+      color: #fff;
+      font-size: 24px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px
+    }
+
+    .sitename span {
+      color: #00b4d8;
+      font-size: 30px
+    }
+
+    .scroll-top {
+      background: linear-gradient(45deg, #007bff, #00b4d8);
+      box-shadow: 0 4px 15px rgba(0, 123, 255, .4);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+
+    .scroll-top:hover {
+      transform: translateY(-5px)
+    }
+
+    .nav-link {
+      color: #fff;
+      text-decoration: none;
+      padding: 12px 20px;
+      transition: .3s;
+      border-radius: 25px
+    }
+
+    .nav-link.active,
+    .nav-link:hover {
+      background: linear-gradient(45deg, #007bff, #00b4d8);
+      box-shadow: 0 4px 15px rgba(0, 123, 255, .4)
+    }
+
+    /* Prediction Result Styling */
+    .prediction-result {
+      padding: 30px;
+      border-radius: 15px;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .prediction-result h3 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #34D399;
+    }
+
+    .prediction-status {
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .btn-primary {
+      background: linear-gradient(45deg, #007bff, #00b4d8);
+      color: white;
+      padding: 12px 40px;
+      border-radius: 25px;
+      font-weight: 600;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+  </style>
+</head>
+
+<body class="index-page">
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+      <a href="#" class="logo d-flex align-items-center">
+        <img src="/static/img/icon.png" alt="">
+        <h1 class="sitename">Federated Learning for 6G</h1><span>.</span>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul style="display:flex;align-items:center;gap:10px;margin:0">
+          <li><a href="{{ url_for('index') }}" class="nav-link active">Home</a></li>
+          <li><a href="{{ url_for('upload') }}" class="nav-link">Upload</a></li>
+          <li><a href="{{ url_for('model') }}" class="nav-link">Model</a></li>
+          <li><a href="{{ url_for('prediction') }}" class="nav-link">Prediction</a></li>
+          <li><a href="{{ url_for('index2') }}" class="nav-link">Logout</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list" style="color:#00b4d8;font-size:28px;cursor:pointer"></i>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main" style="position:relative;z-index:1;">
+    <section id="hero" class="hero section" style="min-height:100vh;position:relative;overflow:hidden;">
+      <!-- background carousel (unchanged) -->
+
+      <!-- === Prediction form & result === -->
+      <div class="info d-flex align-items-center" style="position:relative;z-index:2;height:100%;">
+        <div class="container">
+          <form action="{{ url_for('prediction') }}" method="POST" class="row g-4" style="background:rgba(255,255,255,.1);padding:40px;border-radius:25px;
+                       backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2);
+                       box-shadow:0 15px 40px rgba(0,0,0,.15);">
+
+    
+            <h2 class="text-center fw-bold text-white mb-4">
+              6G Link‑Quality Prediction
+            </h2>
+
+            {# ---------- result panel ---------- #}
+            {% if prediction_status or error %}
+            <div class="prediction-result text-center mb-4">
+              <h3>Prediction Result</h3>
+              {% if prediction_status %}
+              <p class="prediction-status">{{ prediction_status }}</p>
+              {% else %}
+              <p class="text-danger">{{ error }}</p>
+              {% endif %}
+              <p class="text-white">
+                This evaluates whether beamforming optimisation will work for the given parameters.
+              </p>
+            </div>
+            {% endif %}
+
+            {# ---------- numeric inputs ---------- #}
+            {% set num_fields = [
+            ('Mobility (m/s)', 'mobility'),
+            ('Number of Antennas', 'num_antennas'),
+            ('SIFT Keypoints', 'sift_keypoints'),
+            ('Beamforming Gain (dB)', 'beamforming_gain'),
+            ('Latency (ms)', 'latency'),
+            ('Throughput (Mbps)', 'throughput'),
+            ('Beam Training Time (s)', 'beam_training_time')
+            ] %}
+            {% for label,name in num_fields %}
+            <div class="col-md-4">
+              <label class="form-label text-white">{{ label }}</label>
+              <input type="number" step="any" name="{{ name }}" required value="{{ request.form.get(name,'') }}"
+                class="form-control">
+            </div>
+            {% endfor %}
+
+            <!-- categorical input -->
+            <div class="col-md-4">
+              <label class="form-label text-white">Environment – Outdoor (1 = Yes)</label>
+              <input type="number" min="0" max="1" name="environment_outdoor" required
+                value="{{ request.form.get('environment_outdoor','') }}" class="form-control">
+            </div>
+
+            <div class="col-12 text-center">
+              <button type="submit" class="btn btn-primary px-5 py-2 mt-3"
+                style="border-radius:25px;background:linear-gradient(45deg,#007bff,#00b4d8);">
+                Predict
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- scroll‑to‑top & vendor JS (unchanged) -->
+</body>
+
+</html>

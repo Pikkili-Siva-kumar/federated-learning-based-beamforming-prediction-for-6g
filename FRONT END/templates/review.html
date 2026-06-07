@@ -1,0 +1,103 @@
+{% extends 'index.html' %}
+
+
+{% block navbar %}
+  <li><a href="{{url_for('home')}}">Home</a></li>
+  <li><a href="{{url_for('about')}}">About</a></li>
+  <li><a href="{{url_for('prediction')}}">Prediction</a></li>
+  <li><a href="{{url_for('review')}}" class="active">Review</a></li>
+  <li><a href="{{url_for('index')}}">LogOut</a></li>     
+{% endblock %}
+
+
+{% block content %}
+
+    <style>
+        .star-rating {
+            direction: rtl;
+            display: inline-flex;
+            font-size: 2em;
+            justify-content: center;
+            position: relative;
+            }
+
+        .star-rating input[type="radio"] {
+            display: none;
+            }
+
+        .star-rating label {
+            color: #ccc;
+            cursor: pointer;
+            padding: 0 0.1em;
+            }
+
+        .star-rating input[type="radio"]:checked ~ label {
+            color: #f5b301;
+            }
+
+        .star-rating label:hover,
+        .star-rating label:hover ~ label {
+            color: #f5b301;
+            }
+    </style>
+
+
+    <main class="main">
+        <div class="page-title" style="background-image: url(assets/img/page-title-bg.jpg);">
+            <div class="container position-relative">
+                <h1>Feedback</h1><br>
+            </div>
+        </div>
+
+        <section id="contact" class="contact section">
+            <div class="container" data-aos="fade-up" data-aos-delay="100">
+                <center>
+                    <div class="col-6">
+                        <form action="{{url_for('review')}}" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="400" enctype="multipart/form-data">
+                            <div class="row gy-4">
+
+                                <div class="container position-relative">
+                                    <h1><br>Give Rating</h1>
+                                </div>
+
+                                <div class="star-rating">
+                                    <input type="radio" id="star5" name="rating" value="5" required/>
+                                    <label for="star5" title="5 stars">&#9733;</label>
+                                    <input type="radio" id="star4" name="rating" value="4" />
+                                    <label for="star4" title="4 stars">&#9733;</label>
+                                    <input type="radio" id="star3" name="rating" value="3" />
+                                    <label for="star3" title="3 stars">&#9733;</label>
+                                    <input type="radio" id="star2" name="rating" value="2" />
+                                    <label for="star2" title="2 stars">&#9733;</label>
+                                    <input type="radio" id="star1" name="rating" value="1" />
+                                    <label for="star1" title="1 star">&#9733;</label>
+                                </div>
+
+                                <textarea name="feedback" class="form-control" placeholder="Give your feedback here" required></textarea>
+                                
+                                  
+
+                                <div class="col-12 text-center">
+                                    <button type="submit" class="col-12">Submit</button>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </center>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const stars = document.querySelectorAll('.star-rating input');
+stars.forEach(star => {
+  star.addEventListener('change', () => {
+    const rating = document.querySelector('.star-rating input:checked').value;
+    console.log(`You rated this ${rating} stars.`);
+  });
+});
+
+    </script>
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends 'index.html' %}
+
+{% block navbar %}
+<!-- Add Font Awesome CDN if not already present in your base template -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<li>
+  <a href="{{url_for('home')}}" style="color: #fff; text-decoration: none; padding: 12px 20px; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;">
+    <i class="fas fa-home" style="font-size: 18px;"></i>Home
+  </a>
+</li>
+<li>
+  <a href="{{url_for('about')}}" class="active" style="color: #fff; text-decoration: none; padding: 12px 20px; background: linear-gradient(45deg, #007bff, #00b4d8); border-radius: 25px; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 15px rgba(0,123,255,0.4);">
+    <i class="fas fa-info-circle" style="font-size: 18px;"></i>About
+  </a>
+</li>
+<li>
+  <a href="{{url_for('prediction')}}" style="color: #fff; text-decoration: none; padding: 12px 20px; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;">
+    <i class="fas fa-magic" style="font-size: 18px;"></i>Prediction
+  </a>
+</li>
+<li>
+  <a href="{{url_for('index')}}" style="color: #fff; text-decoration: none; padding: 12px 20px; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;">
+    <i class="fas fa-sign-out-alt" style="font-size: 18px;"></i>LogOut
+  </a>
+</li>     
+{% endblock %}
+
+{% block content %}
+  <section id="about" class="about section" style="min-height: 100vh; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); position: relative; overflow: hidden; padding: 100px 0;">
+    <!-- Decorative Background Elements -->
+    <div style="position: absolute; top: -50px; left: -50px; width: 200px; height: 200px; background: rgba(0,123,255,0.2); border-radius: 50%; filter: blur(50px);"></div>
+    <div style="position: absolute; bottom: -50px; right: -50px; width: 300px; height: 300px; background: rgba(0,180,216,0.2); border-radius: 50%; filter: blur(50px);"></div>
+    <!-- Background Image with Overlay -->
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url(/static/img/background1.jpg); background-size: cover; background-position: center; opacity: 0.3; filter: blur(2px); z-index: 0;"></div>
+
+    <div class="container" style="position: relative; z-index: 1;">
+      <div class="row position-relative align-items-center">
+        <div class="col-lg-7 about-img" data-aos="zoom-out" data-aos-delay="200" style="margin-bottom: 40px;">
+          <img src="/static/img/about.jpg" style="width: 100%; border-radius: 25px; box-shadow: 0 15px 40px rgba(0,0,0,0.3); transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        </div>
+        <div class="col-lg-7" data-aos="fade-up" data-aos-delay="100">
+          <h2 class="inner-title" style="color: #fff; font-size: 48px; font-weight: 800; text-shadow: 3px 3px 6px rgba(0,0,0,0.5); position: relative; display: inline-block; margin-bottom: 30px;">
+            <i class="fas fa-info-circle" style="color: #00b4d8; margin-right: 15px;"></i>
+            About
+            <span style="position: absolute; bottom: -10px; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, #007bff, #00b4d8); border-radius: 2px;"></span>
+          </h2>
+          <div class="our-story" style="background: rgba(255,255,255,0.95); padding: 40px; border-radius: 25px; box-shadow: 0 15px 40px rgba(0,0,0,0.15); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); position: relative; overflow: hidden;">
+            <!-- Decorative Corner Element -->
+            <div style="position: absolute; top: -20px; right: -20px; width: 100px; height: 100px; background: linear-gradient(45deg, #007bff, #00b4d8); border-radius: 50%; opacity: 0.2;"></div>
+            
+            <p style="text-align: justify; color: #333; font-size: 18px; line-height: 1.8; margin-bottom: 25px;">
+              Cyberbullying has escalated with the rise of digital platforms, often manifesting through harmful images. Our project, "Image-Based Cyberbullying Detection Using Deep Learning," leverages advanced convolutional neural networks (CNNs) to identify and mitigate such content. By analyzing visual data, our system detects offensive imagery with high accuracy, offering a proactive solution to enhance online safety. We preprocess extensive image datasets, train models like ResNet and MobileNet, and compare their performance to ensure reliability. This initiative aims to protect users, promote a safer digital environment, and combat cyberbullying effectively through cutting-edge technology.
+            </p>
+            <ul style="list-style: none; padding: 0;">
+              <li style="display: flex; align-items: center; gap: 15px; color: #333; font-size: 18px; margin-bottom: 15px;">
+                <i class="fas fa-check-circle" style="color: #007bff; font-size: 24px;"></i>
+                <span style="font-style: italic;">"Empowering Safety with AI-Driven Vigilance"</span>
+              </li>
+            </ul>
+            <a href="{{url_for('prediction')}}" style="display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(45deg, #007bff, #00b4d8); color: #fff; padding: 15px 30px; border-radius: 12px; text-decoration: none; font-size: 18px; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 6px 20px rgba(0,123,255,0.4);" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'">
+              <i class="fas fa-arrow-right"></i>
+              Explore Predictions
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends 'index.html' %}
+
+
+{% block navbar %}
+  <li><a href="{{url_for('admin_home')}}">Home</a></li>
+  <li><a href="{{url_for('admin_result')}}" class="active">Results</a></li>
+  <li><a href="{{url_for('admin_review')}}">Reviews</a></li>
+  <li><a href="{{url_for('index')}}">LogOut</a></li>     
+{% endblock %}
+
+
+{% block content %}
+
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    th {
+        background-color: #4CAF50;
+        color: white;
+    }
+    tr:hover {
+        background-color: #f1f1f1;
+    }
+  </style>
+
+  <main class="main">
+
+    <div class="page-title" style="background-image: url(assets/img/page-title-bg.jpg);">
+      <div class="container position-relative">
+        <h1>Results</h1>
+      </div>
+    </div>
+
+    <section id="contact" class="contact section">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <center>
+          <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>User Name</th>
+                    <th>Email Id</th>
+                    <th>Age</th>
+                    <th>Input</th>
+                    <th>Output</th>
+                    <th>Probability</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                <tr>
+                    <td>{{ row[0] }}</td>
+                    <td>{{ row[1] }}</td>
+                    <td>{{ row[2] }}</td>
+                    <td>{{ row[3] }}</td>
+                    <td>
+                      <img src="{{ row[4] }}" height="100px" width="200px">
+                    </td>
+                    <td>{{ row[5] }}</td>
+                    <td>{{ row[6] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+        </center>
+        </div>
+      </div>
+    </section>
+  </main>
+{% endblock %}
